@@ -1,12 +1,5 @@
 import express, { Router } from 'express';
-import {
-  addProduct,
-  getProducts,
-  // deleteProduct,
-  // getProducts,
-  // updateProduct,
-} from '../controllers/productController.js';
-import { get } from 'node:http';
+import { addProduct, getProducts } from '../controllers/productController.js';
 
 const productRoutes: Router = express.Router({ mergeParams: true });
 
