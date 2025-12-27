@@ -7,6 +7,7 @@ import compression from 'compression';
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import { errorHandler } from './middleware/error.middleware.js';
 
 dotenv.config();
 
@@ -35,6 +36,9 @@ await connectDB();
 
 app.use('/api', authRoutes);
 app.use('/api/products', productRoutes);
+
+// Error handling middleware
+app.use(errorHandler);
 
 //  Start server
 const PORT = process.env.PORT || 3000;
