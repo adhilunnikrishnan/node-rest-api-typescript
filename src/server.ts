@@ -5,6 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import connectDB from './config/db.js';
+import productRoutes from './routes/productRoutes.js';
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
 await connectDB();
 
 //  Routes
+app.use('/api/products', productRoutes);
 
 //  Start server
 const PORT = process.env.PORT || 3000;

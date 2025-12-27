@@ -1,14 +1,17 @@
-import express from 'express';
+import express, { Router } from 'express';
 import {
   addProduct,
-  deleteProduct,
   getProducts,
-  updateProduct,
+  // deleteProduct,
+  // getProducts,
+  // updateProduct,
 } from '../controllers/productController.js';
+import { get } from 'node:http';
 
+const productRoutes: Router = express.Router({ mergeParams: true });
 
-const productRoutes = express.Router({ mergeParams: true });
+productRoutes.post('/', addProduct);
 
-productRoutes.post(
-  "/", addProduct
-);
+productRoutes.get('/', getProducts);
+
+export default productRoutes;
