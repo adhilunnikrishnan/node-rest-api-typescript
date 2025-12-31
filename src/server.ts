@@ -8,6 +8,7 @@ import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import { errorHandler } from './middleware/error.middleware.js';
+import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 
@@ -35,6 +36,9 @@ await connectDB();
 //  Routes
 
 app.use('/api', authRoutes);
+
+app.use('/api/users', userRoutes);
+
 app.use('/api/products', productRoutes);
 
 // Error handling middleware
