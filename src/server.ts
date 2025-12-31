@@ -9,6 +9,8 @@ import productRoutes from './routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import { errorHandler } from './middleware/error.middleware.js';
 import userRoutes from './routes/userRoutes.js';
+import studentRoutes from './routes/studentRoutes.js';
+import { authLimiter } from './middleware/rateLimiter.middleware.js';
 
 dotenv.config();
 
@@ -35,11 +37,13 @@ await connectDB();
 
 //  Routes
 
-app.use('/api', authRoutes);
+app.use('/api', authLimiter, authRoutes);
 
 app.use('/api/users', userRoutes);
 
 app.use('/api/products', productRoutes);
+
+app.use('/api/students', studentRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
