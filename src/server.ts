@@ -5,6 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import connectDB from './config/db.js';
+import { connectRedis } from './config/redis.js';
 import productRoutes from './routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import { errorHandler } from './middleware/error.middleware.js';
@@ -34,6 +35,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 //  Connect to MongoDB
 await connectDB();
+
+//  Connect to Redis
+await connectRedis();
 
 //  Routes
 
